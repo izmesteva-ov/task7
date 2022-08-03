@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  dzstep1:
+    build: img/
+    hostname: dzstep1
+    volumes: 
+      - dzvolum:/app/boxfuse-sample-java-war-hello/target
+    networks:
+      - dznetwork
+      
+  dzstep2:
+    build: .
+    hostname: dzstep2
+    volumes: 
+      - dzvolum:/app
+    ports:
+      - 8080:8080
+    networks:
+      - dznetwork
+      
+volumes:
+  dzvolum:      
+
+  
+networks:
+  dznetwork:
+    driver: bridge  
